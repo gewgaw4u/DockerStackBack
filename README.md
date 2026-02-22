@@ -1,5 +1,9 @@
 # DockerStackBack
-Simple script to keep multiple daily versions of your docker stack files and then retain daily versions for a period of time
+Simple script to keep multiple daily versions of your docker stack files and then retain daily versions for a period of time. I created this simple script to keep copies of my docker compose files that I may edit throughout the day. I don't keep the compose files up on Gitgub and wanted a way to keep simple copies to revert back to if needed. I have mounts to my NAS and keep them there where they are also synced to a second NAS as an extra copy. 
+
+Keep in mind this wont backup or version your docker volumes or data within your docker containers. It will only keep copies of the compose.yaml, .env and Dockerfile files in folders that have a .tobackup file in them. It will scan all the folders (only one folder deep) within a set location.
+
+Feel free to use and modify as you see fit, please be careful and ensure your not deleting/pruning files you wish to keep.
 
 1) make sure to chmod +x docker-backstack.sh to make the script executable.
 2) edit top of script to set your stack/compose, backup locations and retention days
@@ -16,7 +20,7 @@ USAGE:
 
   adding --dry-run will only run the script in test mode and not backup or prune any files.
 
-  Happy Versioning/Backup-ing!
 
-  GewGaw4U
+Happy Versioning/Backup-ing!
+GewGaw4U
   
