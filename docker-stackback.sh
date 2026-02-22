@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Configuration Start 
+# Configuration Start
 PARENT_DIR="/mnt/docker/stacks"    # set parent folder of your docker stacks
 BACKUP_ROOT="/mnt/docker/backups"  # set backup location
 COMPOSE_FILENAME="compose.yaml"         # Change to docker-compose.yml if needed
@@ -59,11 +59,12 @@ do_prune() {
     find "$BACKUP_ROOT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | while read -r TARGET_BACKUP_DIR; do
 
         # 1. Consolidate past days (Keep only the latest version per day)
+		# Remove 'grep -v "$TODAY"' (below) so today's duplicates are handled too
         dates=$(ls "$TARGET_BACKUP_DIR"/*_* 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | grep -v "$TODAY" | sort -u)
 
         for d in $dates; do
             # Process each prefix type
-            for prefix in "compose" ".env" "Dockerfile"; do
+            for prefix in "$COMPOSE_FILENAME" ".env" "Dockerfile"; do
                 files_for_day=$(ls "$TARGET_BACKUP_DIR"/${prefix}_"$d"_* 2>/dev/null | sort)
                 last_file=$(echo "$files_for_day" | tail -n 1)
 
