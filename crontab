@@ -1,0 +1,10 @@
+# edit and save your crontab to run backups and pruning jobs at your desired frequency
+
+# run backups at intervals that will give you the desired amount of daily versions.
+# this example will run every hour at 55 mins after the hour
+55 * * * * /mnt/docker/docker-stackback.sh backup
+# this example will run every fours hours at 55 min past the hour
+55 */2 * * * /mnt/docker/docker-stackback.sh backup
+
+# set the prune job once a day after midnight to clear out all but one daily version and then it will prune also for the total retention days set in the script
+5 0 * * * /mnt/docker/docker-stackback.sh prune
