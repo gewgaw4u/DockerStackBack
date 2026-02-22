@@ -13,7 +13,7 @@ Feel free to use and modify as you see fit, please be careful and ensure your no
 
 USAGE:
   ./docker-stackback.sh backup
-  will run a backup of compose.yaml, .env and Dockerfile files in foolders where your stacks are located.
+  will run a backup of compose.yaml, .env and Dockerfile files in folders where your stacks are located.
 
   ./docker-stackback prune
   will run the pruining job which will remove all the previous daily version except one (all current today backups will remain). it will then prune of any days exceeding the retantion days ie. 30.
